@@ -14,19 +14,9 @@ Person_t::Person_t(int age, std::string name) : Person_t()
 	m_name = name;
 }
 
-size_t Person_t::getId() const
-{
-	return m_id;
-}
-
 const std::string& Person_t::getName() const
 {
 	return m_name;
-}
-
-int Person_t::getAge() const
-{
-	return m_age;
 }
 
 //operator=
@@ -35,7 +25,7 @@ const Person_t& Person_t::operator=(const Person_t& p)
 	if (this != &p)
 	{
 		m_name = p.getName();
-		m_age = p.getId();
+		m_age = p.getAge();
 
 	}
 	return *this;

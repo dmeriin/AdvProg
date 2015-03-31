@@ -42,7 +42,7 @@ PersonArray_t::PersonArray_t(const PersonArray_t& _obj)
 			m_arr[i] = _obj.m_arr[i];
 		}
 	}
-	catch (bad_alloc& ba)
+	catch (bad_alloc&)
 	{
 		int err = BAD_ALLOC;
 		throw TException_t<int>(err, __FILE__, __LINE__, "bad alloc");
@@ -69,16 +69,18 @@ const PersonArray_t& PersonArray_t:: operator=(const PersonArray_t& _obj)
 
 			for (int i = 0; i<_obj.m_numOfElements; i++)
 			{
-				m_arr[i] = _obj.m_arr[i];
+				m_arr[i] = _obj.m_arr[i];//TODO: need to be the same objects or use copy ctor
 			}
+
 		}
-		catch (bad_alloc& ba)
+		catch (bad_alloc&)
 		{
 			int err = BAD_ALLOC;
 			throw TException_t<int>(err, __FILE__, __LINE__, "bad alloc");
 		}
 
 	}
+	return *this;
 }
 
 //----------------------------------------------------------------------------
@@ -113,8 +115,7 @@ int PersonArray_t::Insert( Person_t* _item)
 //Insert Person_t element after given index
 bool PersonArray_t::Append(int index, Person_t* p)
 {
-	int pos;
-
+	
 	if (m_numOfElements >= m_capacity)
 	{
 		try
@@ -130,6 +131,7 @@ bool PersonArray_t::Append(int index, Person_t* p)
 	*this >> ( index + 1 );
 
 	m_arr[index + 1] = p;
+	return true;
 }
 
 //----------------------------------------------------------------------------
@@ -137,7 +139,6 @@ bool PersonArray_t::Append(int index, Person_t* p)
 //Insert Person_t element after given index
 bool PersonArray_t::Prepend(int index, Person_t* p)
 {
-	int pos;
 
 	if (m_numOfElements >= m_capacity)
 	{
@@ -154,12 +155,13 @@ bool PersonArray_t::Prepend(int index, Person_t* p)
 	*this >> (index);
 
 	m_arr[index] = p;
+	return true;
 }
 
 //----------------------------------------------------------------------------
 
 // Remove element with the same values as p
-Person_t* PersonArray_t::Remove(Person_t& p)
+Person_t* PersonArray_t::Remove(const Person_t& p)
 {
 	Person_t* retPerson = 0;
 	bool found = false;
@@ -197,7 +199,7 @@ void PersonArray_t::RemoveAll()
 
 // remove and deletes element with specific values
 // if more than one element has the same value, then to remove all of them
-void PersonArray_t::RemoveAndDelete(Person_t& p)
+void PersonArray_t::RemoveAndDelete(const Person_t& p)
 {
 
 	Person_t* retPerson = 0;
@@ -213,7 +215,6 @@ void PersonArray_t::RemoveAndDelete(Person_t& p)
 			*this << index;
 			delete retPerson;
 		}
-		index++;
 	}
 }
 
@@ -234,7 +235,7 @@ void PersonArray_t::RemoveAndDeleteAll()
 //----------------------------------------------------------------------------
 
 // Find – find element in container with the same values as p
-Person_t* PersonArray_t::Find(Person_t& p) const
+Person_t* PersonArray_t::Find(const Person_t& p) const
 {
 	Person_t* retPerson = 0;
 	bool found = false;
@@ -280,22 +281,9 @@ void PersonArray_t::MyRealloc()
 
 //----------------------------------------------------------------------------
 
-int PersonArray_t::getNumOfElements()
-{
-	return m_numOfElements;
-}
-
-//----------------------------------------------------------------------------
-
-int PersonArray_t::getCapacity()
-{
-	return m_capacity;
-}
-
-//----------------------------------------------------------------------------
 
 // get first element in array
-Person_t* PersonArray_t::getFirst()
+Person_t* PersonArray_t::getFirst() const
 {
 	Person_t* retPerson = NULL;
 
@@ -310,7 +298,7 @@ Person_t* PersonArray_t::getFirst()
 //----------------------------------------------------------------------------
 
 // last element in array
-Person_t* PersonArray_t::getLast()
+Person_t* PersonArray_t::getLast() const
 {
 	Person_t* retPerson = NULL;
 
@@ -335,7 +323,7 @@ const PersonArray_t& PersonArray_t::operator<<(int _index)
 	}
 	else if (_index < m_numOfElements)
 	{
-		for (int i = _index; i<( m_numOfElements - 1); i++)
+		for (int i = _index; i<( m_numOfElements-1); i++)
 		{
 			m_arr[i] = m_arr[i + 1];
 		}

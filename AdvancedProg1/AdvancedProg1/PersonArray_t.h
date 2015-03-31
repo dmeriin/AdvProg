@@ -34,34 +34,38 @@ class PersonArray_t
 		 bool Prepend( int index ,Person_t* );
 
 		 // get first element in array
-		 Person_t* getFirst();
+		 Person_t* getFirst() const;
 
 		 // last element in array
-		 Person_t* getLast();
+		 Person_t* getLast() const;
 
 		//Remove Person_t element with specific values
 		// if more than one element has the same value, then to remove only the first found
 		// Returns pointer to the person object if removed, NULL otherwise.
-		 Person_t* Remove(Person_t&);
+		 Person_t* Remove(const Person_t&);
 		
 		//RemoveAll – empty container
 		 void RemoveAll();		
 
 		 // remove and deletes element with specific values
 		 // if more than one element has the same value, then to remove all of them
-		 void RemoveAndDelete(Person_t&);
+		 void RemoveAndDelete(const Person_t&);
 
 		 // Remove and delete all
 		 void RemoveAndDeleteAll();
 		
 		//Find – find element in container with specific values
-		 Person_t* Find(Person_t&) const;
+		 Person_t* Find(const Person_t&) const;
 	
 		// Get number of elements in array
-		 int getNumOfElements();
+		 inline int getNumOfElements() const{
+			 return m_numOfElements;
+		 }
 
 		 // Get capcity of array.
-		 int getCapacity();
+		 inline int getCapacity() const{
+			 return m_capacity;
+		 }
 	
 	private:
 		Person_t **m_arr;

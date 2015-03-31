@@ -13,11 +13,15 @@ public:
 
 	Person_t(int age, std::string name);
 
-	size_t getId() const;
+	inline size_t getId() const{
+		return m_id;
+	}
+
+	inline int getAge() const{
+		return m_age;
+	}
 
 	const std::string& getName() const;
-
-	int getAge() const;
 
 	//operator=
 	const Person_t& operator=(const Person_t&) ;
