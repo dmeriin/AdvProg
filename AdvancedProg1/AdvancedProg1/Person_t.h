@@ -13,6 +13,9 @@ public:
 
 	Person_t(int age, std::string name);
 
+	Person_t::Person_t(const Person_t& p);
+
+
 	inline size_t getId() const{
 		return m_id;
 	}

@@ -14,6 +14,12 @@ Person_t::Person_t(int age, std::string name) : Person_t()
 	m_name = name;
 }
 
+Person_t::Person_t(const Person_t& p) : Person_t()
+{
+	m_age = p.getAge();
+	m_name = p.getName();
+}
+
 const std::string& Person_t::getName() const
 {
 	return m_name;

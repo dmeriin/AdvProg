@@ -37,9 +37,10 @@ PersonArray_t::PersonArray_t(const PersonArray_t& _obj)
 		m_numOfElements = _obj.m_numOfElements;
 		m_capacity = _obj.m_capacity;
 
+		// copy each person object
 		for (int i = 0; i<_obj.m_numOfElements; i++)
 		{
-			m_arr[i] = _obj.m_arr[i];
+			m_arr[i] = new Person_t(*_obj.m_arr[i]);
 		}
 	}
 	catch (bad_alloc&)
@@ -67,9 +68,10 @@ const PersonArray_t& PersonArray_t:: operator=(const PersonArray_t& _obj)
 			m_numOfElements = _obj.m_numOfElements;
 			m_capacity = _obj.m_capacity;
 
+			// copy pointer of each person
 			for (int i = 0; i<_obj.m_numOfElements; i++)
 			{
-				m_arr[i] = _obj.m_arr[i];//TODO: need to be the same objects or use copy ctor
+				m_arr[i] = _obj.m_arr[i];
 			}
 
 		}
