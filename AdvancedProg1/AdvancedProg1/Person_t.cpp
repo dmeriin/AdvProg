@@ -8,7 +8,7 @@ Person_t::Person_t() : m_id(m_globID++)
 }
 
 
-Person_t::Person_t(int age, std::string name) : Person_t()
+Person_t::Person_t(unsigned int age, std::string name) : Person_t()
 {
 	m_age = age;
 	m_name = name;

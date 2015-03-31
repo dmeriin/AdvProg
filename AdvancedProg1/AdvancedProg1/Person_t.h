@@ -11,16 +11,16 @@ public:
 	//Ctor
 	Person_t();
 
-	Person_t(int age, std::string name);
+	Person_t(unsigned int age, std::string name);
 
-	Person_t::Person_t(const Person_t& p);
+	Person_t(const Person_t& p);
 
 
 	inline size_t getId() const{
 		return m_id;
 	}
 
-	inline int getAge() const{
+	inline unsigned int getAge() const{
 		return m_age;
 	}
 
@@ -39,7 +39,7 @@ public:
 private:
 	const size_t 		m_id;		// Unique for each Person_t object
 	std::string				m_name;
-	int					m_age;
+	unsigned int					m_age;
 	static size_t		m_globID ;	// used to calculate m_id 
 
 };
