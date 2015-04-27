@@ -1,0 +1,149 @@
+#ifndef __DAY_CALENDAR_T_H__
+#define __DAY_CALENDAR_H__
+
+#include <string>
+#include <iostream>
+#include "Meeting_t.h"
+#include <vector>
+
+using namespace std;
+
+template <class T>
+class DayCalendar_t
+{
+public:
+	DayCalendar_t();
+	DayCalendar_t(const DayCalendar_t<T>& calendar);
+	virtual ~DayCalendar_t();
+
+	virtual void addMeeting(Meeting_t<T>* meeting);
+
+	virtual bool deleteMeeting(T startTime);
+
+	virtual Meeting_t<T>* findMeeting(T startTime) const;
+
+	int findMeetingIndex(T startTime) const;
+
+	/*inline Meeting_t<T>* getMeetingByIndex(int index) const
+	{
+	if (index>=0 && index<vec.size())
+	return m_vec.at(index);
+	return NULL;
+	}*/
+
+	inline virtual void print(void) const
+	{
+		cout << this << endl;
+	}
+
+	inline int getNumOfMeetings() const
+	{
+		return m_vec.size();
+	}
+
+
+protected:
+	typename vector<typename Meeting_t<T>*> m_vec;
+};
+
+//default CTOR
+template <class T>
+DayCalendar_t<T>::DayCalendar_t() 
+{
+	;
+}
+
+//copy CTOR
+template <class T>
+DayCalendar_t<T>::DayCalendar_t(const DayCalendar_t<T>& calendar)
+{
+	//TODO copy ctor
+}
+
+//DTOR
+template <class T>
+DayCalendar_t<T>::~DayCalendar_t()
+{
+	for (int i = 0; i < m_vec.size(); i++)
+	{
+		delete (m_vec.at(i));
+	}
+	m_vec.clear();
+}
+
+// write into output stream
+template <class T>
+ostream& operator<< (ostream& os, const DayCalendar_t<T>& calendar)
+{
+	for (int i = 0; i < m_vec.size(); i++)
+	{
+		os << (*calendar.m_vec.at(i)) << endl;
+	}
+	return os;
+}
+template <class T>
+void DayCalendar_t<T>::addMeeting(Meeting_t<T>* meeting)
+{
+	int i;
+	if (m_vec.size() == 0 || m_vec.at(0) == 0){
+		m_vec.push_back( meeting);
+		return;
+	}
+	
+	for (i = 0; i < m_vec.size(); i++)
+	{
+		Meeting_t<T>* start = ((Meeting_t<T>*) m_vec.at(i));
+		if (m_vec.at(0) == 0)
+			continue;
+		if (start->getStartTime() > meeting->getStartTime()){
+			break;
+		}
+	}
+	if (*m_vec.at(i) == *meeting)
+		throw new exception("There is an overlap between the meetings");
+	if (i > 0){
+		if (*m_vec.at(i - 1) == *meeting)
+			throw new exception("There is an overlap between the meetings");
+	}
+	m_vec.insert(m_vec.begin() + i, meeting);
+
+}
+
+template <class T>
+bool DayCalendar_t<T>::deleteMeeting(T startTime)
+{
+	int meetingIndex = findMeetingIndex(startTime);
+	if (meetingIndex == -1)
+		return false;
+
+	m_vec.erase(m_vec.begin() + meetingIndex);
+	return true;
+}
+
+template <class T>
+Meeting_t<T>* DayCalendar_t<T>::findMeeting(T startTime) const
+{
+	int meetingIndex = findMeetingIndex(startTime);
+	if (meetingIndex == -1)
+		return NULL;
+	return m_vec[meetingIndex];
+}
+
+template <class T>
+int DayCalendar_t<T>::findMeetingIndex(T startTime) const
+{
+	int i;
+	for (i = 0; i < m_vec.size(); i++)
+	{
+		if (startTime == m_vec[i]->getStartTime()){
+			return i;
+		}
+		if (startTime < m_vec[i]->getStartTime())
+		{
+			break;
+		}
+	}
+	return -1;
+}
+
+#endif

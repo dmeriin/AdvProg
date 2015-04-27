@@ -23,16 +23,11 @@ public:
 		}
 	}
 	
-	inline Meeting_t(const Meeting_t<T>&)
+	inline Meeting_t(const Meeting_t<T>&meeting)
 	{
-		if (!(T is int || T is float))
-		{
-			thrown new exception;
-		}
-
-		m_startTime = meeting.startTime;
-		m_endTime = meeting.endTime;
-		m_strSubject = meeting.strSubject;
+		m_startTime = meeting.m_startTime;
+		m_endTime = meeting.m_endTime;
+		m_strSubject = meeting.m_strSubject;
 	}
 
 	virtual inline ~Meeting_t()
@@ -40,14 +35,20 @@ public:
 
 	}
 
-	virtual inline T getStartTime(void)
+	virtual inline T getStartTime(void) const
 	{
 		return m_startTime;
 	}
 
-	// write into output stream
-	template <class J>
-	friend std::ostream& operator<< (std::ostream& os, const Meeting_t<J>& meeting);
+	virtual inline T getEndTime(void) const
+	{
+		return m_endTime;
+	}
+
+	virtual inline string getSubject(void) const
+	{
+		return m_strSubject;
+	}
 
 	virtual inline void print(void)
 	{
@@ -57,7 +58,7 @@ public:
 	//operator==. Check only if meeting times intersect.
 	const virtual inline bool operator==(const Meeting_t<T>& otherMeeting)
 	{
-		return ((m_startTime < otherMeeting.m_endTime && m_endTime > otherMeeting.m_startTime));
+		return (m_startTime < otherMeeting.m_endTime && m_endTime > otherMeeting.m_startTime);
 	}
 
 
@@ -73,9 +74,9 @@ protected:
 template <class J>
 std::ostream& operator<< (std::ostream& os, const Meeting_t<J>& meeting)
 {
-	os << "\nStart time:   " << meeting.m_startTime
-		<< "\nEnd time:    " << meeting.m_endTime
-		<< "\nSubject:    " << meeting.m_strSubject;
+	os << "\nStart time:   " << meeting.getStartTime()
+		<< "\nEnd time:    " << meeting.getEndTime()
+		<< "\nSubject:    " << meeting.getSubject();
 	return os;
 }
 

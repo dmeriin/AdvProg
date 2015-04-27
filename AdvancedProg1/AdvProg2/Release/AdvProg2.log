@@ -1,4 +1,4 @@
-﻿Build started 25/04/2015 03:32:26.
+﻿Build started 28/04/2015 00:13:57.
      1>Project "C:\Users\user\Documents\Visual Studio 2013\Projects\AdvProg\AdvancedProg1\AdvProg2\AdvProg2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Test_Example.cpp
@@ -6,6 +6,40 @@
      1>Test_Example.cpp(25): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>Test_Example.cpp(41): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
      1>Test_Example.cpp(55): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(70): warning C4018: '<' : signed/unsigned mismatch
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(69) : while compiling class template member function 'DayCalendar_t<float>::~DayCalendar_t(void)'
+                 Test_Example.cpp(243) : see reference to class template instantiation 'DayCalendar_t<float>' being compiled
+     1>c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(104): warning C4018: '<' : signed/unsigned mismatch
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(97) : while compiling class template member function 'void DayCalendar_t<float>::addMeeting(Meeting_t<T> *)'
+                 with
+                 [
+                     T=float
+                 ]
+     1>c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(110): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(80): warning C4018: '<' : signed/unsigned mismatch
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(79) : while compiling class template member function 'Meeting_t<T> *DayCalendar_t<T>::getMeetingFromIndex(int) const'
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(33) : see reference to function template instantiation 'Meeting_t<T> *DayCalendar_t<T>::getMeetingFromIndex(int) const' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+     1>c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(153): warning C4018: '<' : signed/unsigned mismatch
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(151) : while compiling class template member function 'int DayCalendar_t<float>::findMeetingIndex(T) const'
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(127) : see reference to function template instantiation 'int DayCalendar_t<float>::findMeetingIndex(T) const' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\user\documents\visual studio 2013\projects\advprog\advancedprog1\advprog2\DayCalendar_t.h(51) : while compiling class template member function 'DayCalendar_t<float>::DayCalendar_t(void)'
+                 Test_Example.cpp(243) : see reference to function template instantiation 'DayCalendar_t<float>::DayCalendar_t(void)' being compiled
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\user\Documents\Visual Studio 2013\Projects\AdvProg\AdvancedProg1\Release\AdvProg2.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\user\Documents\Visual Studio 2013\Projects\AdvProg\AdvancedProg1\Release\AdvProg2.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\user\Documents\Visual Studio 2013\Projects\AdvProg\AdvancedProg1\Release\AdvProg2.lib" /MACHINE:X86 /SAFESEH Release\Test_Example.obj
          Generating code
@@ -15,4 +49,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.80
+Time Elapsed 00:00:00.85

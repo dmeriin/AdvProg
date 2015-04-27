@@ -22,7 +22,7 @@ public:
 		m_strLocation = strLocation;
 	}
 
-	virtual inline string getLocation( void )
+	virtual inline string getLocation( void ) const
 	{
 		return m_strLocation;
 	}
@@ -32,11 +32,26 @@ public:
 		m_strLocation = strLocation;
 	}
 
+	virtual inline void print(void)
+	{
+		cout << *this << endl;
+	}
+
 	virtual ~MeetingWithLoc_t() {};
 	
 protected:
 	string m_strLocation;
 };
+
+template <class J>
+std::ostream& operator<< (std::ostream& os, const MeetingWithLoc_t<J>& meeting)
+{
+	os << "\nStart time:   " << meeting.getStartTime()
+		<< "\nEnd time:    " << meeting.getEndTime()
+		<< "\nSubject:    " << meeting.getSubject()
+		<< "\nLocation:	  " << meeting.getLocation();
+	return os;
+}
 
 
 #endif
